@@ -1,0 +1,30 @@
+<style>
+input { width:600px; font-size:24pt; }
+.btn { background:gray; padding:5px;}
+#servermsg { padding:20px; border:1px solid #ff0; background:#000; color:gray; }
+</style>
+
+<script src="socket.js"></script>
+
+<script>
+function id(x) { return document.getElementById(x); }
+
+function show(msg) {
+    var t = document.createTextNode(msg);
+    id("servermsg").appendChild(t);
+    id("servermsg").appendChild(document.createElement("br"))
+}
+
+var socket = new io.Socket('localhost',{port: 3000});
+socket.connect(); 
+socket.on('connect', function() { show('Client has connected to the server!');});
+socket.on('message', show);
+socket.on('disconnect',function() { show('The client has disconnected!'); });
+function to_server() { socket.send(id("t").value); }
+
+</script>
+<input id="t" type=text width=600/> 
+<span class="btn" onclick="to_server()">to server</span>
+<br/><br/><br/><br/>
+<div id="servermsg">
+</div>

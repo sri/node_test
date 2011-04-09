@@ -1,0 +1,35 @@
+<style> 
+html { margin:12px; font-size:20px; }
+a    { text-decoration: none; }
+a.d:hover { background:#00e; color:#fff; }
+a.f:hover { text-decoration:underline; }
+.d   { color: #00e;  }
+.f   { color: #333; }
+#main { 
+ background:#eee; 
+ border: 1px solid #333; 
+ padding: 12px ;
+ width: 500px;
+ -webkit-border-radius:5px; 
+ -webkit-box-shadow: 10px 10px 5px #888; 
+}
+</style>
+<div id="main" style="position:relative">
+  <div style="position:absolute;top:5px;right:5px">
+    <a href="/" style="color:#666">[src-home]</a>
+  </div>
+  <a href="?path=" style="color:#666">[parent]</a><br/>
+
+ <% dirs.forEach(function(x) { %>
+   <a href="?path=<%= x %>" class="d"><%= basename(x) %></a><br/>
+ <% }) %>
+
+ <% files.forEach(function(x) { %>
+   <a href="?path=<%= x %>" class="f"><%= basename(x) %></a><br/>
+ <% }) %>
+</div>
+<div style="position:fixed;right:0;bottom:0">
+<form method="post" action="/src">
+  <input type=text name="url" style="border:0;width:400px" />
+</form>
+</div>
