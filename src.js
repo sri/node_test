@@ -10,7 +10,7 @@ function withFileContents(path, errCallback, callback) {
 
 function withDirElts(path, errCallback, callback) {
   fs.readdir(path, function(err, all) {
-    if (err) { errCallback(err); return; }
+    if (err) { errCallback(err.message); return; }
     
     var dirs  = [],
         files = [],
